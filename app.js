@@ -8,6 +8,9 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+//Make public folder public
+app.use(express.static('public'));
+
 //Listen for request on port 3000
 app.listen(3000);
 
