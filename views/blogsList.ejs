@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blogs Page</title>
+</head>
+<body>
+    <% if (blogs.length > 0) { %>
+        <% blogs.forEach(blog => { %>
+            <a href="/blogs/<%=blog._id%>">
+                <h2><%= blog.title %></h2>
+                <p><%= blog.snippet %></p>
+                <p><%= blog.body %></p>
+                <p><%= blog.author %></p>
+            </a>
+        <% }) %>
+    <% } else { %>
+        <p>There is no blogs to display</p>
+    <% } %>
+    
+</body>
+</html>

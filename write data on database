@@ -1,0 +1,17 @@
+    app.get('/blogs', (req, res) => {
+        const blog = new Blog ({
+            title: "New New Blog",
+            snippet: "Hello Helloooo Word",
+            body: "Hello new World",
+            author: "bradley mubengassssaaa"
+        })
+    
+        blog.save()
+            .then((result) => {
+                res.send(result)
+            })
+    
+            .catch((err) => {
+                console.log(err)
+            });
+    })
