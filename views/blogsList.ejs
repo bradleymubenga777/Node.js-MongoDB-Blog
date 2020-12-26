@@ -2,6 +2,7 @@
 <html lang="en">
     <%- include('partials/head') %>
 <body>
+    <%- include('partials/navbar') %>
     <% if (blogs.length > 0) { %>
         <% blogs.forEach(blog => { %>
             <a href="/blogs/<%=blog._id%>">
