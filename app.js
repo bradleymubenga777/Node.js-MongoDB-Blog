@@ -1,28 +1,32 @@
-//Importing/Requiring modules
+//Require Modules
 const express = require('express');
 const mongoose = require('mongoose');
 const Blog = require('./schema');
 
-//Setting up express server/app
+//Express App
 const app = express();
 
-//Connect to MongoDB database using mongoose
+//Register View Engine
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+//Setting Static Files Public
+app.use(express.static('public'));
+
+//Connect To MongoDB
 const dbURI = 'mongodb+srv://bradley123:bradley123@cluster0.ivbdd.mongodb.net/blog?retryWrites=true&w=majority'
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
-    //Listen for request on port 3000
     .then((result) => app.listen(3000))
     .catch((err) => console.log(err));
 
 
+app.get('/blogs', (req, res) => {
+    Blog.find()
+        .then((result) => {
+            res.render('blog', {title: 'All blogs', blogs: result})
+        })
 
-//Register view engine
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-
-//Make public folder public
-app.use(express.static('public'));
-
-//Listen to a get request for routes
-app.get('/', (req, res) => {
-    res.render('index', {title: "Hello Blog"})
-});
+        .catch((err) => {
+            console.log(err);
+        })
+})

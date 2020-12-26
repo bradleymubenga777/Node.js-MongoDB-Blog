@@ -1,8 +1,9 @@
-//Import/Require Modules
-const mongoose = require('mongoose');
+//Require Mongoose
+const mongoose = require("mongoose");
+
+//Declare Schema Variable
 const Schema = mongoose.Schema;
 
-//Define Blog Schema
 const blogSchema = new Schema ({
     title: {
         type: String,
@@ -12,18 +13,20 @@ const blogSchema = new Schema ({
         type: String,
         required: true
     },
-    body:{
+    body: {
         type: String,
         required: true
     },
     author: {
         type: String,
         required: true
-    }
+    },
 }, {timestamps: true});
 
-//Define Model
+//Store Schema In A Variable Model
 const Blog = mongoose.model('Blog', blogSchema);
 
 //Export Schema
 module.exports = Blog;
+
+
