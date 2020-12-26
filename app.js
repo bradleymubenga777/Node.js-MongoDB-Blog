@@ -20,12 +20,12 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
     .catch((err) => console.log(err));
 
 //Listen for route GET requests on individual routes
-app.get('/create', (req, res) => {
-    res.render('newBlog');
+app.get('/', (res, req) => {
+    req.redirect('/blogs')
 })
 
 
-//Retrieve BSON blog data from MongoDB and display preview blogs. 
+//Set blogs route to retrieve BSON blog data from MongoDB and display preview blogs. 
 app.get('/blogs', (req, res) => {
     Blog.find()
         .then((result) => {
