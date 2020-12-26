@@ -20,8 +20,12 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
     .catch((err) => console.log(err));
 
 //Listen for route GET requests on individual routes
-app.get('/', (res, req) => {
-    req.redirect('/blogs')
+app.get('/', (req, res) => {
+    res.redirect('/blogs')
+})
+
+app.get('/create', (req, res) => {
+    res.render('newBlog', {title: 'Create A New Blog'})
 })
 
 
@@ -64,3 +68,16 @@ app.get('/blogs/:id', (req, res) => {
             res.render('blog', {blog: result, title: result.title})
         })
 });
+
+//Adding A Button That Will Allow Administrators To Delete Blogs.
+app.delete('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+
+    Blog.findByIdAndDelete(id)
+        .then(result => {
+            res.json({redirect: '/blogs'});
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})

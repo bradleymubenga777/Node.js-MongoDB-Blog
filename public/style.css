@@ -1,0 +1,6 @@
+.truncate {
+    width: 250px; /*Edit Width According To Container To Truncate*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
