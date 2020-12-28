@@ -14,7 +14,8 @@ app.set('views', 'views');
 app.use(express.static('public'));
 
 //Connect To MongoDB.
-const dbURI = 'mongodb+srv://bradley123:bradley123@cluster0.ivbdd.mongodb.net/blog?retryWrites=true&w=majority'
+const dbURI = //'Your MongoDB URI Here'
+
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
     .then((result) => app.listen(3000))
     .catch((err) => console.log(err));
