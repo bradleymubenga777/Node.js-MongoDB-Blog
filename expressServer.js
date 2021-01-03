@@ -1,6 +1,9 @@
 //Require express & initilize app.
 const express = require('express');
 const app = express();
+//Require our view engine and set directory (EJS)
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 //Require body parser to respond to http requests.
 const bodyParser = require('body-parser');
 //Conncect to MongoDB via Mongoose.
@@ -10,8 +13,8 @@ const BlogModel = require('./models/blogModel');
 
 //Set up express app
 app.listen(process.env.port || 4000, function () {
-    console.log('Now Listening For Requests!')
-})
+    console.log('Now Listening For Requests!');
+});
 
 //Connect to MongoDB Database.
 mongoose.connect('mongodb://localhost/expressBlog', {useNewUrlParser: true, useUnifiedTopology: true}); //MongoDB URI
@@ -29,4 +32,4 @@ app.use((err, req, res, next) => {
 app.use('/', require('./routes/router'));
 
 //Use the CRUD API's for the blog.
-app.use('/blogs', require("./api/blogsAPI"));
+app.use('/blogs/api', require("./api/blogsAPI"));

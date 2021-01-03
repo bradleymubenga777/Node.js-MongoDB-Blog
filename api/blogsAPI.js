@@ -25,17 +25,17 @@ router.put('/:id', (req, res, next) => {
     .then(() => {
         BlogModel.findOne({_id: req.params.id}, req.body)
         .then(blog => {
-            res.send(blog)
-        })
-    }) //TEST & FIX THIS IS DEPRECATED!
-})
+            res.send(blog);
+        });
+    });//TEST & FIX THIS IS DEPRECATED!
+});
 
 //API To Read All The Blogs And Display Them To The Client.
 router.get('/', (req, res) => {
     BlogModel.find().sort({createdAt: -1})
     .then(blog => {
-        res.send(blog);
-    })
-})
+        res.render('blogsList', {title: "This Is The List Of Blogs", blogs: blog});
+    });
+});
 
 module.exports = router;
