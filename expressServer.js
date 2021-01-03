@@ -21,6 +21,9 @@ mongoose.Promise = global.Promise;
 app.use(bodyParser.json());
 
 //Middleware to handle erros.
+app.use((err, req, res, next) => {
+    res.status(422).send({error: err.message});
+})
 
 //Use and activate the routes in router.js
 app.use('/', require('./routes/router'));
